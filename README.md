@@ -202,3 +202,10 @@ Nên dùng ảnh nguồn PNG 1024x1024.
 Mặc định app chỉ coi `checkin.joydigi.net` là website nội bộ. Những URL HTTP/HTTPS khác sẽ được chuyển sang browser mặc định. Điều này giúp nội dung web bên ngoài không tự chạy bên trong BrowserWindow của app.
 
 Nếu hệ thống Check-in sau này cần Google/Microsoft OAuth chạy hoàn toàn trong Electron, cần thêm domain đăng nhập tương ứng vào allowlist và kiểm tra callback trước khi phát hành.
+
+
+## GitHub Actions: lỗi GH_TOKEN
+
+Nếu log có dòng `GitHub Personal Access Token is not set`, nghĩa là `electron-builder` đang cố publish artifact lên GitHub Release do phát hiện môi trường CI/tag. Project này chỉ build và upload bằng `actions/upload-artifact`, vì vậy tất cả lệnh CI đã được cấu hình `--publish never`.
+
+Nếu bạn vừa cập nhật source nhưng bấm **Re-run jobs** trên một workflow cũ, GitHub vẫn chạy đúng commit/tag cũ. Hãy commit + push các file mới rồi chạy workflow mới, hoặc tạo tag mới (ví dụ `v0.1.1`).

@@ -3,18 +3,21 @@
   "version": "0.1.0",
   "description": "JoyDigi Check-in & Kiosk desktop app powered by Electron",
   "main": "main.js",
-  "author": "JoyDigi",
+  "author": {
+    "name": "JoyDigi",
+    "email": "admin@joydigi.net"
+  },
   "license": "MIT",
   "private": true,
   "scripts": {
     "start": "electron .",
     "dev": "electron .",
     "start:kiosk": "electron . --kiosk",
-    "build": "electron-builder",
-    "build:win": "electron-builder --win nsis",
-    "build:win:portable": "electron-builder --win portable",
-    "build:mac": "electron-builder --mac dmg",
-    "build:linux": "electron-builder --linux AppImage deb"
+    "build": "electron-builder --publish never",
+    "build:win": "electron-builder --win nsis --publish never",
+    "build:win:portable": "electron-builder --win portable --publish never",
+    "build:mac": "electron-builder --mac dmg --publish never",
+    "build:linux": "electron-builder --linux AppImage deb --publish never"
   },
   "devDependencies": {
     "electron": "43.4.0",
@@ -38,7 +41,9 @@
       "target": [
         {
           "target": "nsis",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
       ]
     },
@@ -55,7 +60,10 @@
       "target": [
         {
           "target": "dmg",
-          "arch": ["x64", "arm64"]
+          "arch": [
+            "x64",
+            "arm64"
+          ]
         }
       ]
     },
@@ -65,13 +73,20 @@
       "target": [
         {
           "target": "AppImage",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         },
         {
           "target": "deb",
-          "arch": ["x64"]
+          "arch": [
+            "x64"
+          ]
         }
-      ]
+      ],
+      "maintainer": "JoyDigi <admin@joydigi.net>",
+      "syncDesktopName": true
     }
-  }
+  },
+  "desktopName": "net.joydigi.checkin.desktop"
 }
