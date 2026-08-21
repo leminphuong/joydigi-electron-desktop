@@ -1,0 +1,77 @@
+{
+  "name": "joydigi-checkin-electron",
+  "version": "0.1.0",
+  "description": "JoyDigi Check-in & Kiosk desktop app powered by Electron",
+  "main": "main.js",
+  "author": "JoyDigi",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "start:kiosk": "electron . --kiosk",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win nsis",
+    "build:win:portable": "electron-builder --win portable",
+    "build:mac": "electron-builder --mac dmg",
+    "build:linux": "electron-builder --linux AppImage deb"
+  },
+  "devDependencies": {
+    "electron": "43.4.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "net.joydigi.checkin.desktop",
+    "productName": "JoyDigi Check-in",
+    "asar": true,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "package.json",
+      "build/**/*"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "JoyDigi Check-in"
+    },
+    "mac": {
+      "icon": "build/icon.icns",
+      "category": "public.app-category.business",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ]
+    },
+    "linux": {
+      "icon": "build/icon.png",
+      "category": "Office",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        },
+        {
+          "target": "deb",
+          "arch": ["x64"]
+        }
+      ]
+    }
+  }
+}
